@@ -1,0 +1,23 @@
+# Java Class Files #
+*.class
+# Package Files #
+*.jar
+*.war
+*.ear
+*.zip
+# Eclipse #
+*/.project
+*/.settings
+*/bin/**
+# Maven #
+*/target/
+*/test-output/
+*/.mvn
+*/.maven
+*/.repository
+*.flattened-pom.xml
+# JDT-specific (Eclipse Java Development Tools)
+*.classpath
+### VS Code ###
+.vscode/
+*/.metadata/
