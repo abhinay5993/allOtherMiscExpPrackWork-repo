@@ -1,19 +1,23 @@
 import { test, expect } from "@playwright/test";
+import { TodoFormsPage } from "./pageObjects/TodoFormsPage";
+import { ToDoListPage } from "./pageObjects/ToDoListPage";
+import { NavigationPage } from "./pageObjects/NavigationPage";
 
-let commonPageLocatorVar;
-let displayedToDoItemsVar;
-
+let todoFrmPg;
+let toDoListPg;
+let navigatePg;
 test.beforeEach('This will run beforeEach test',
     async ({ page }) => {
-        await page.goto('https://todomvc.com/examples/emberjs/');
-        commonPageLocatorVar = page.locator("#new-todo");
-        displayedToDoItemsVar = page.locator(".todo-list label");
+        todoFrmPg=new TodoFormsPage(page);
+        toDoListPg=new ToDoListPage(page);
+        navigatePg=new NavigationPage(page);
+        await navigatePg.pageNavigateTo('https://todomvc.com/examples/emberjs/');
     }
 );
 
 test('The Todo input field Should display a helpfull prompt.',
     async ({ page }) => {
-        await expect(page.locator("#new-todo")).toHaveAttribute('placeholder', 'What needs to be done?');
+        await expect(todoFrmPg.commonPageLocatorVar).toHaveAttribute('placeholder', 'What needs to be done?');
     }
 );
 
@@ -23,20 +27,19 @@ test.describe('When adding a single Item.',
 
         test.beforeEach(
             async ({ page }) => {
-                await commonPageLocatorVar.fill("Walk the Dog!");
-                await commonPageLocatorVar.press("Enter");
+                await todoFrmPg.enterInputTextToField("Walk the Dog!");
             }
         );
 
         test('Should add item to the list.',
             async ({ page }) => {
-                await expect(displayedToDoItemsVar).toHaveText("Walk the Dog!");
+                await expect(toDoListPg.displayedToDoItemsVar).toHaveText("Walk the Dog!");
             }
         );
 
         test('Should show number of remaining items.',
             async ({ page }) => {
-                await expect(page.locator("#todo-count")).toHaveText("1 item left");
+                await expect(toDoListPg.remNoOfItems).toHaveText("1 item left");
             }
         );
     }
@@ -48,22 +51,20 @@ test.describe('When adding a multiple Items.',
 
         test.beforeEach(
             async ({ page }) => {
-                await commonPageLocatorVar.fill("Walk the Dog!");
-                await commonPageLocatorVar.press("Enter");
-                await commonPageLocatorVar.fill("Cat! is sleeping");
-                await commonPageLocatorVar.press("Enter");
+                await todoFrmPg.enterInputTextToField("Walk the Dog!");
+                await todoFrmPg.enterInputTextToField("Cat! is sleeping");
             }
         );
 
         test('Should add item to the list.',
             async ({ page }) => {
-                await expect(displayedToDoItemsVar).toHaveText(["Walk the Dog!", "Cat! is sleeping"]);
+                await expect(toDoListPg.displayedToDoItemsVar).toHaveText(["Walk the Dog!", "Cat! is sleeping"]);
             }
         );
 
         test('Should show number of remaining items.',
             async ({ page }) => {
-                await expect(page.locator("#todo-count")).toHaveText("2 items left");
+                await expect(toDoListPg.remNoOfItems).toHaveText("2 items left");
             }
         );
     }
