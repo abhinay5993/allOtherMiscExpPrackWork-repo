@@ -13,3 +13,33 @@
 5. Call the function and print the result
 
 */
+
+function checkNumberType(numX)
+{
+   if(typeof numX=='number')
+   {
+      if(numX>0)
+      {
+      return "the number is greater than 0";
+      }
+      else if(numX<0)
+      {
+      return "the number is less than 0";
+      }
+      else
+      {
+      return "the number is not greater than 0 or less than 0";
+      }
+   }
+   else
+   {
+      return "Please enter numeric digits only.";
+   }
+}
+
+var result = checkNumberType(50);
+console.log("\nResult is : "+result);
+var result = checkNumberType(-344.304);
+console.log("\nResult is : "+result);
+var result = checkNumberType("Hello str");
+console.log("\nResult is : "+result);

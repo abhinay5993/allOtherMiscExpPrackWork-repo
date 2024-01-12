@@ -60,18 +60,19 @@ console.log("\nItem vlaue - '"+listItems[i]+"' Type is : "+typeof listItems[i]);
 const browserName="Chrome";
 
 function getBrowserVersion(browserName) {
-    var browserVersion = browserName; 
+    var browserVersion = "v1.0"; 
+    let runEngine="Default JS";
     if (browserName==="Chrome"){
-        let browserVersion=browserName;
-        console.log("Browser is : "+browserName);
-        console.log("Browser Version : "+browserVersion);
+        let browserVersion="v21.011.110";
+        let runEngine="V8";
+        console.log("\nBrowser Version : "+browserVersion+" JS engine name : "+runEngine);
     }else{
-        console.log("He/Him");
+        browserName="JS-Light";
+        console.log("\nDefualt Runtime engine : "+runEngine);
+        console.log("\nBrowser not '"+browserName+"' supported!!. with version of : "+browserVersion+" .");
     }
-    console.log("\nOutside block :"+browserVersion);
-    
+    console.log("\nOutside block browser name : '"+browserName+"' with version of : "+browserVersion);
 }
 
 getBrowserVersion("firefox");
-
 getBrowserVersion("Chrome");

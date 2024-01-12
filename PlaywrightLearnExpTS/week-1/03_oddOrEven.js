@@ -9,3 +9,29 @@
 4. Call the function and print the result
 
 */
+
+function checkOddOrEven(numX)
+{
+   if(typeof numX=='number')
+   {
+      if(numX%2==0)
+      {
+      return "the number is even";
+      }
+      else
+      {
+      return "the number is odd";
+      }
+   }
+   else
+   {
+      return "Please enter numeric digits only.";
+   }
+}
+
+var result = checkOddOrEven(50);
+console.log("\nResult is : "+result);
+var result = checkOddOrEven(-37.304);
+console.log("\nResult is : "+result);
+var result = checkOddOrEven("Hello str");
+console.log("\nResult is : "+result);
