@@ -7,3 +7,28 @@ and return the sum
 // finally, print the sum !! 
 
 */
+
+function sumOfValues(numX)
+{
+   if(typeof numX=='number')
+   {
+     let sum=0.0;
+     for(let i=1;i<=numX;i++)
+     {
+     console.log(i);
+     sum +=i;
+     }
+     return sum;
+   }
+   else
+   {
+      return "Please enter numeric digits only.";
+   }
+}
+
+let nthTerm=5;
+console.log("\nSum of Value : "+sumOfValues(nthTerm));
+nthTerm="test";
+console.log("\nSum of Value : "+sumOfValues(nthTerm));
+nthTerm=10;
+console.log("\nSum of Value : "+sumOfValues(nthTerm));
