@@ -63,22 +63,34 @@ return the indices that has matching target? 7+11 (2,4), 4+14 (1,5)
 function findMaxMinElementsIndexPosition(inpArrayData)
 {
     let outPutArray=[];
-    let maxNum=inpArrayData[0];
-    let minNum=inpArrayData[0];
-    for(let i = 0; i <inpArrayData.length; i++)
+    let maxNum=-Infinity
+    let minNum=Infinity
+    let temMaxPos;
+    let temMinPos;
+    for(let i=0; i<inpArrayData.length; i++)
     {
-        if(typeof inpArrayData[i]=='number')
+        if(typeof i=='number')
         {
-            if(inpArrayData[i]>maxNum)
+           if(inpArrayData[i]>maxNum)
+           {
+            maxNum=inpArrayData[i];
+            temMaxPos=i;
+           }
+        }
+        else
+        {
+        return "Please enter numbers only!!."
+        }
+    }
+    outPutArray.push(temMaxPos);
+    for(let j=0; j<inpArrayData.length; j++)
+    {
+        if(typeof j=='number')
+        {
+            if(inpArrayData[j]<minNum)
             {
-             maxNum=inpArrayData[i];
-             outPutArray.push(i);
-            }
-
-            if(inpArrayData[i]<minNum)
-            {
-            minNum=inpArrayData[i];
-            outPutArray.push(i);
+             minNum=inpArrayData[j];
+             temMinPos=j;
             }
         }
         else
@@ -86,10 +98,10 @@ function findMaxMinElementsIndexPosition(inpArrayData)
         return "Please enter numbers only!!."
         }
     }
+    outPutArray.push(temMinPos);
     console.log("Max Element : "+maxNum);
     console.log("Min Element : "+minNum);
-    console.log(outPutArray);
     return outPutArray;
 }
 
-findMaxMinElementsIndexPosition([34,7,21,89,54,10,91,67]);
+console.log(findMaxMinElementsIndexPosition([34,7,21,89,54,10,91,67]));
